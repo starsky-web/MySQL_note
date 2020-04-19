@@ -1,0 +1,434 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>5、MySQL多表查询 · MySQL笔记</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="07、视图与索引.html" />
+    
+    
+    <link rel="prev" href="05、数据库的备份与还原.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    实际操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01、MySQL基础知识与查询.html">
+            
+                <a href="01、MySQL基础知识与查询.html">
+            
+                    
+                    1、MySQL基础知识与查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="02、MySQL中的约束.html">
+            
+                <a href="02、MySQL中的约束.html">
+            
+                    
+                    2、MySQL中的约束‘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="03、MySQL数据表设计，三大范式.html">
+            
+                <a href="03、MySQL数据表设计，三大范式.html">
+            
+                    
+                    3、数据库的三大范式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="04、MySQL中的多表操作.html">
+            
+                <a href="04、MySQL中的多表操作.html">
+            
+                    
+                    3、MySQL中的多表操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="05、数据库的备份与还原.html">
+            
+                <a href="05、数据库的备份与还原.html">
+            
+                    
+                    4、数据库的备份与还原
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8" data-path="06、MySQL多表查询.html">
+            
+                <a href="06、MySQL多表查询.html">
+            
+                    
+                    5、MySQL多表查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="07、视图与索引.html">
+            
+                <a href="07、视图与索引.html">
+            
+                    
+                    6、视图与索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../设计理论/">
+            
+                <a href="../设计理论/">
+            
+                    
+                    设计理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../设计理论/关系代数.html">
+            
+                <a href="../设计理论/关系代数.html">
+            
+                    
+                    1、关系代数
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >5、MySQL多表查询</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="5&#x3001;mysql&#x591A;&#x8868;&#x67E5;&#x8BE2;">5&#x3001;MySQL&#x591A;&#x8868;&#x67E5;&#x8BE2;</h1>
+<hr>
+<h1 id="1&#x3001;&#x6982;&#x8FF0;">1&#x3001;&#x6982;&#x8FF0;</h1>
+<p>&#x53D6;&#x51FA;&#x7684;&#x662F;&#x7B1B;&#x5361;&#x5C14;&#x79EF;&#xFF0C;&#x4E24;&#x5F20;&#x8868;&#x4E2D;&#x6240;&#x6709;&#x6570;&#x636E;&#x7EC4;&#x5408;&#x60C5;&#x51B5;</p>
+<h1 id="2&#x3001;&#x5206;&#x7C7B;">2&#x3001;&#x5206;&#x7C7B;</h1>
+<h2 id="21&#x3001;&#x5185;&#x8FDE;&#x63A5;">2.1&#x3001;&#x5185;&#x8FDE;&#x63A5;</h2>
+<p>&#x9700;&#x8981;&#x660E;&#x786E;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
+<ol>
+<li>&#x4ECE;&#x54EA;&#x4E9B;&#x8868;&#x4E2D;&#x67E5;</li>
+<li>&#x6761;&#x4EF6;&#x662F;&#x4EC0;&#x4E48;</li>
+<li>&#x67E5;&#x8BE2;&#x54EA;&#x4E9B;&#x5B57;&#x6BB5;</li>
+</ol>
+<h3 id="211&#x3001;&#x9690;&#x5F0F;&#x5185;&#x8FDE;&#x63A5;">2.1.1&#x3001;&#x9690;&#x5F0F;&#x5185;&#x8FDE;&#x63A5;</h3>
+<p>&#x4F7F;&#x7528;where&#x6761;&#x4EF6;&#x6D88;&#x9664;&#x65E0;&#x7528;&#x6570;&#x636E;</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> &#x8868;<span class="hljs-number">1</span>,&#x8868;<span class="hljs-number">2</span> <span class="hljs-keyword">where</span> &#x8868;<span class="hljs-number">1.</span>&#x5B57;&#x6BB5;<span class="hljs-number">1</span> = &#x8868;<span class="hljs-number">2.</span>&#x5B57;&#x6BB5;<span class="hljs-number">2</span>;<span class="hljs-comment">-- &#x4E24;&#x8868;&#x5B57;&#x6BB5;&#x76F8;&#x540C;&#x7684;&#x6570;&#x636E;&#x624D;&#x6709;&#x6548;</span>
+</code></pre>
+<p>&#x4F7F;&#x7528;&#x522B;&#x540D;</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">select</span> t1.&#x5B57;&#x6BB5;<span class="hljs-number">1</span>,t2.&#x5B57;&#x6BB5;<span class="hljs-number">2</span> <span class="hljs-keyword">from</span> &#x8868;<span class="hljs-number">1</span> t1&#xFF0C;&#x8868;<span class="hljs-number">2</span> t2 <span class="hljs-keyword">where</span> t1.&#x5B57;&#x6BB5; = t2.&#x5B57;&#x6BB5;
+<span class="hljs-comment">-- from&#x8BED;&#x53E5;&#x4E2D;&#x8BBE;&#x7F6E;&#x522B;&#x540D;&#xFF0C;&#x8868;1&#x4F4D;t1&#xFF0C;&#x8868;2&#x4E3A;t2</span>
+</code></pre>
+<h3 id="212&#x3001;&#x663E;&#x5F0F;&#x5185;&#x8FDE;&#x63A5;">2.1.2&#x3001;&#x663E;&#x5F0F;&#x5185;&#x8FDE;&#x63A5;</h3>
+<p><strong>&#x8BED;&#x6CD5;</strong></p>
+<pre><code class="lang-sql"><span class="hljs-keyword">select</span> &#x5B57;&#x6BB5;&#x5217;&#x8868; <span class="hljs-keyword">from</span> &#x8868;&#x540D;<span class="hljs-number">1</span> <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> &#x8868;&#x540D;<span class="hljs-number">2</span> <span class="hljs-keyword">on</span> &#x6761;&#x4EF6;
+</code></pre>
+<p>inner&#x53EF;&#x4EE5;&#x7701;&#x7565;</p>
+<h2 id="22&#x3001;&#x5916;&#x8FDE;&#x63A5;">2.2&#x3001;&#x5916;&#x8FDE;&#x63A5;</h2>
+<h3 id="221&#x3001;&#x5DE6;&#x5916;&#x8FDE;&#x63A5;">2.2.1&#x3001;&#x5DE6;&#x5916;&#x8FDE;&#x63A5;</h3>
+<p><strong>&#x8BED;&#x6CD5;</strong>&#xFF1A;</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">select</span> &#x5B57;&#x6BB5;&#x5217;&#x8868; <span class="hljs-keyword">from</span> &#x8868;<span class="hljs-number">1</span> <span class="hljs-keyword">left</span> <span class="hljs-keyword">outer</span> <span class="hljs-keyword">join</span> &#x8868;<span class="hljs-number">2</span> <span class="hljs-keyword">on</span> &#x6761;&#x4EF6;
+</code></pre>
+<p>outer&#x53EF;&#x4EE5;&#x7701;</p>
+<p>&#x67E5;&#x8BE2;&#x7684;&#x662F;&#x5DE6;&#x8868;&#x6240;&#x6709;&#x6570;&#x636E;&#x4EE5;&#x53CA;&#x4EA4;&#x96C6;&#x90E8;&#x5206;</p>
+<h3 id="222&#x3001;&#x53F3;&#x5916;&#x8FDE;&#x63A5;">2.2.2&#x3001;&#x53F3;&#x5916;&#x8FDE;&#x63A5;</h3>
+<pre><code class="lang-sql"><span class="hljs-keyword">select</span> &#x5B57;&#x6BB5;&#x5217;&#x8868; <span class="hljs-keyword">from</span> &#x8868;<span class="hljs-number">1</span> <span class="hljs-keyword">right</span> <span class="hljs-keyword">outer</span> <span class="hljs-keyword">join</span> &#x8868;<span class="hljs-number">2</span> <span class="hljs-keyword">on</span> &#x6761;&#x4EF6;
+</code></pre>
+<p>outer&#x53EF;&#x7701;</p>
+<p>&#x67E5;&#x8BE2;&#x7684;&#x662F;&#x53F3;&#x8868;&#x6240;&#x6709;&#x6570;&#x636E;&#x548C;&#x4EA4;&#x96C6;&#x90E8;&#x5206;</p>
+<h2 id="23&#x3001;&#x5B50;&#x67E5;&#x8BE2;">2.3&#x3001;&#x5B50;&#x67E5;&#x8BE2;</h2>
+<h3 id="231&#x3001;&#x6982;&#x5FF5;">2.3.1&#x3001;&#x6982;&#x5FF5;</h3>
+<p>&#x67E5;&#x8BE2;&#x4E2D;&#x5D4C;&#x5957;&#x67E5;&#x8BE2;&#xFF0C;&#x79F0;&#x5D4C;&#x5957;&#x67E5;&#x8BE2;&#x4E3A;&#x5B50;&#x67E5;&#x8BE2;</p>
+<p><strong>&#x793A;&#x4F8B;</strong>&#xFF1A;</p>
+<p>&#x5982;&#x7B2C;&#x4E8C;&#x4E2A;&#x67E5;&#x8BE2;&#x7684;&#x6761;&#x4EF6;&#x662F;&#x7B2C;&#x4E00;&#x4E2A;&#x67E5;&#x8BE2;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x53EF;&#x4F7F;&#x7528;&#x5B50;&#x67E5;&#x8BE2;</p>
+<pre><code class="lang-sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">MAX</span>(salary) <span class="hljs-keyword">from</span> emp;<span class="hljs-comment">-- &#x4ECE;emp&#x8868;&#x67E5;salary&#x7684;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x8FD9;&#x91CC;&#x5047;&#x8BBE;&#x7ED3;&#x679C;&#x662F;9000</span>
+<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> emp.salary = <span class="hljs-number">9000</span>;<span class="hljs-comment">-- &#x7528;&#x4E0A;&#x4E00;&#x6761;&#x7684;&#x7ED3;&#x679C;&#x6765;&#x67E5;&#x8BE2;&#x5BF9;&#x5E94;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;</span>
+
+<span class="hljs-comment">-- &#x4E0A;&#x9762;&#x4E24;&#x6BB5;&#x7B49;&#x6548;&#x4E8E;&#x4E0B;&#x9762;&#x7684;&#x5B50;&#x67E5;&#x8BE2;</span>
+<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">where</span> emp.salary = (<span class="hljs-keyword">select</span> <span class="hljs-keyword">MAX</span>(salary) <span class="hljs-keyword">from</span> emp);<span class="hljs-comment">-- &#x5373;&#x5C06;&#x4E00;&#x4E2A;&#x67E5;&#x8BE2;&#x4F5C;&#x4E3A;&#x6761;&#x4EF6;&#x4F7F;&#x7528;</span>
+</code></pre>
+<h3 id="232&#x3001;&#x5B50;&#x67E5;&#x8BE2;&#x7684;&#x4E0D;&#x540C;&#x60C5;&#x51B5;">2.3.2&#x3001;&#x5B50;&#x67E5;&#x8BE2;&#x7684;&#x4E0D;&#x540C;&#x60C5;&#x51B5;</h3>
+<h4 id="2321&#x3001;&#x5355;&#x884C;&#x5355;&#x5217;">2.3.2.1&#x3001;&#x5355;&#x884C;&#x5355;&#x5217;</h4>
+<p>&#x5B50;&#x67E5;&#x8BE2;&#x4F5C;&#x4E3A;&#x6761;&#x4EF6;&#xFF0C;&#x4F7F;&#x7528;&#x8FD0;&#x7B97;&#x7B26;&#x5224;&#x65AD;</p>
+<h4 id="2322&#x3001;&#x591A;&#x884C;&#x5355;&#x5217;">2.3.2.2&#x3001;&#x591A;&#x884C;&#x5355;&#x5217;</h4>
+<p>&#x5B50;&#x67E5;&#x8BE2;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x6761;&#x4EF6;&#xFF0C;&#x4F7F;&#x7528;&#x8FD0;&#x7B97;&#x7B26;in&#x8FDB;&#x884C;&#x5224;&#x65AD;&#xFF08;&#x5373;&#x6709;&#x591A;&#x79CD;&#x60C5;&#x51B5;&#xFF09;</p>
+<h4 id="2323&#x3001;&#x591A;&#x884C;&#x591A;&#x5217;">2.3.2.3&#x3001;&#x591A;&#x884C;&#x591A;&#x5217;</h4>
+<p>&#x5B50;&#x67E5;&#x8BE2;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x4E00;&#x5F20;&#x865A;&#x62DF;&#x8868;&#x53C2;&#x4E0E;&#x67E5;&#x8BE2;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="05、数据库的备份与还原.html" class="navigation navigation-prev " aria-label="Previous page: 4、数据库的备份与还原">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="07、视图与索引.html" class="navigation navigation-next " aria-label="Next page: 6、视图与索引">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"5、MySQL多表查询","level":"1.8","depth":1,"next":{"title":"6、视图与索引","level":"1.9","depth":1,"path":"实际操作/07、视图与索引.md","ref":"实际操作/07、视图与索引.md","articles":[]},"previous":{"title":"4、数据库的备份与还原","level":"1.7","depth":1,"path":"实际操作/05、数据库的备份与还原.md","ref":"实际操作/05、数据库的备份与还原.md","articles":[]},"dir":"ltr"},"config":{"plugins":["summary","expandable-chapters","theme-comscore","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"summary":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"theme-comscore":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"MySQL笔记","gitbook":"*","theme-default":{"showLevel":true}},"file":{"path":"实际操作/06、MySQL多表查询.md","mtime":"2020-04-19T01:51:19.746Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-19T01:59:19.253Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+
