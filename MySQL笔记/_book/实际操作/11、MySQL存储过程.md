@@ -124,3 +124,35 @@ drop procedure 过程名;
 show create procedure 过程名;
 ```
 
+# 4、游标
+
+游标只能用于存储过程
+
+一个游标可以对应N条结果，沿着游标可以一次取出一行
+
+**声明游标**
+
+declare  游标名 cursor for select语句
+
+**打开游标**
+
+open  游标名
+
+**取值**
+
+让游标到下一行，一开始默认在标题行，要让游标指向第一行，执行FETCH NEXT
+
+fetch 游标名 into ...
+
+放到对应的变量中
+
+**关闭**
+
+close 游标名
+
+**释放游标**
+
+deallocate 游标名
+
+
+
